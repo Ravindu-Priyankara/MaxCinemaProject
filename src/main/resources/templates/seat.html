@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>seat booking</title>
+    <link th:href="@{/styles/style.css}" rel="stylesheet" />
+    <style>
+        table, th, td {
+            border: 1px solid #284b1b;
+        }
+    </style>
+</head>
+  <body>
+  <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#movies">Movies</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a class="active" href="http://localhost:8080/seats">Book a seat</a> </li>
+  </ul>
+  <br>
+  <br>
+  <br>
+  <label>
+
+      <div style="text-align: left;"><button class="button-92" role="button"><h1 th:text="${filmName}"/></button></div>
+
+      <br>
+      <br>
+      <br>
+
+  </label>
+    <form th:action="bookseat" th:method="post" th:object="${userSeat}">
+        <table style="margin-left: auto;margin-right: auto">
+            <th>
+                <td>
+
+                </td>
+            <td style="color: white;">
+                1
+            </td>
+            <td style="color: white;">
+                2
+            </td>
+            <td style="color: white;">
+                3
+            </td>
+            <td style="color: white;">
+                4
+            </td>
+            <td style="color: white;">
+                5
+            </td>
+            <td style="color: white;">
+                6
+            </td>
+            <td style="color: white;">
+                7
+            </td>
+            <td style="color: white;">
+                8
+            </td>
+            <td style="color: white;">
+                9
+            </td>
+            <td style="color: white;">
+                10
+            </td>
+            <td style="color: white;">
+                11
+            </td>
+            <td style="color: white;">
+                12
+            </td>
+            <td style="color: white;">
+                13
+            </td>
+            <td style="color: white;">
+                14
+            </td>
+            </th>
+            <tr>
+                <td style="color: white;">
+                    A
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    <input id="seat01" type="checkbox" name="seat01" th:checked="*{seat01}" />
+                </td>
+                <td>
+                    <input id="seat02" type="checkbox" name="seat02" th:checked="*{seat02}" />
+                </td>
+                <td>
+                    <input id="seat03" type="checkbox" name="seat03" th:checked="*{seat03}" />
+                </td>
+                <td>
+                    <input id="seat04" type="checkbox" name="seat04" th:checked="*{seat04}" />
+                </td>
+                <td>
+                    <input id="seat05" type="checkbox" name="seat05" th:checked="*{seat05}" />
+                </td>
+                <td>
+                    <input id="seat06" type="checkbox" name="seat06" th:checked="*{seat06}" />
+                </td>
+                <td>
+                    <input id="seat07" type="checkbox" name="seat07" th:checked="*{seat07}" />
+                </td>
+                <td>
+                    <input id="seat08" type="checkbox" name="seat08" th:checked="*{seat08}" />
+                </td>
+                <td>
+                    <input id="seat09" type="checkbox" name="seat09" th:checked="*{seat09}" />
+                </td>
+                <td>
+                    <input id="seat10" type="checkbox" name="seat10" th:checked="*{seat10}" />
+                </td>
+                <td>
+                    <input id="seat11" type="checkbox" name="seat11" th:checked="*{seat11}" />
+                </td>
+                <td>
+                    <input id="seat12" type="checkbox" name="seat12" th:checked="*{seat12}" />
+                </td>
+                <td>
+                    <input id="seat13" type="checkbox" name="seat13" th:checked="*{seat13}" />
+                </td>
+                <td>
+                    <input id="seat14" type="checkbox" name="seat14" th:checked="*{seat14}" />
+                </td>
+            </tr>
+            <tr>
+                <td style="color: white;">
+                    B
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    <input id="seat15" type="checkbox" name="seat15" th:checked="*{seat15}" />
+                </td>
+                <td>
+                    <input id="seat16" type="checkbox" name="seat16" th:checked="*{seat16}" />
+                </td>
+                <td>
+                    <input id="seat17" type="checkbox" name="seat17" th:checked="*{seat17}" />
+                </td>
+                <td>
+                    <input id="seat18" type="checkbox" name="seat18" th:checked="*{seat18}" />
+                </td>
+                <td>
+                    <input id="seat19" type="checkbox" name="seat19" th:checked="*{seat19}" />
+                </td>
+                <td>
+                    <input id="seat20" type="checkbox" name="seat20" th:checked="*{seat20}" />
+                </td>
+                <td>
+                    <input id="seat21" type="checkbox" name="seat21" th:checked="*{seat21}" />
+                </td>
+                <td>
+                    <input id="seat22" type="checkbox" name="seat22" th:checked="*{seat22}" />
+                </td>
+                <td>
+                    <input id="seat23" type="checkbox" name="seat23" th:checked="*{seat23}" />
+                </td>
+                <td>
+                    <input id="seat24" type="checkbox" name="seat24" th:checked="*{seat24}" />
+                </td>
+                <td>
+                    <input id="seat25" type="checkbox" name="seat25" th:checked="*{seat25}" />
+                </td>
+                <td>
+                    <input id="seat26" type="checkbox" name="seat26" th:checked="*{seat26}" />
+                </td>
+                <td>
+                    <input id="seat27" type="checkbox" name="seat27" th:checked="*{seat27}" />
+                </td>
+                <td>
+                    <input id="seat28" type="checkbox" name="seat28" th:checked="*{seat28}" />
+                </td>
+            </tr>
+            <tr>
+                <td style="color: white;">
+                    C
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    <input id="seat29" type="checkbox" name="seat29" th:checked="*{seat29}" />
+                </td>
+                <td>
+                    <input id="seat30" type="checkbox" name="seat30" th:checked="*{seat30}" />
+                </td>
+                <td>
+                    <input id="seat31" type="checkbox" name="seat31" th:checked="*{seat31}" />
+                </td>
+                <td>
+                    <input id="seat32" type="checkbox" name="seat32" th:checked="*{seat32}" />
+                </td>
+                <td>
+                    <input id="seat33" type="checkbox" name="seat33" th:checked="*{seat33}" />
+                </td>
+                <td>
+                    <input id="seat34" type="checkbox" name="seat34" th:checked="*{seat34}" />
+                </td>
+                <td>
+                    <input id="seat35" type="checkbox" name="seat35" th:checked="*{seat35}" />
+                </td>
+                <td>
+                    <input id="seat36" type="checkbox" name="seat36" th:checked="*{seat36}" />
+                </td>
+                <td>
+                    <input id="seat037" type="checkbox" name="seat37" th:checked="*{seat37}" />
+                </td>
+                <td>
+                    <input id="seat38" type="checkbox" name="seat38" th:checked="*{seat38}" />
+                </td>
+                <td>
+                    <input id="seat39" type="checkbox" name="seat39" th:checked="*{seat39}" />
+                </td>
+                <td>
+                    <input id="seat40" type="checkbox" name="seat40" th:checked="*{seat40}" />
+                </td>
+                <td>
+                    <input id="seat41" type="checkbox" name="seat41" th:checked="*{seat41}" />
+                </td>
+                <td>
+                    <input id="seat42" type="checkbox" name="seat42" th:checked="*{seat42}" />
+                </td>
+            </tr>
+            <tr>
+                <td style="color: white;">
+                    D
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    <input id="seat43" type="checkbox" name="seat43" th:checked="*{seat43}" />
+                </td>
+                <td>
+                    <input id="seat44" type="checkbox" name="seat44" th:checked="*{seat44}" />
+                </td>
+                <td>
+                    <input id="seat45" type="checkbox" name="seat45" th:checked="*{seat45}" />
+                </td>
+                <td>
+                    <input id="seat46" type="checkbox" name="seat46" th:checked="*{seat46}" />
+                </td>
+                <td>
+                    <input id="seat47" type="checkbox" name="seat47" th:checked="*{seat47}" />
+                </td>
+                <td>
+                    <input id="seat48" type="checkbox" name="seat48" th:checked="*{seat48}" />
+                </td>
+                <td>
+                    <input id="seat49" type="checkbox" name="seat49" th:checked="*{seat49}" />
+                </td>
+                <td>
+                    <input id="seat50" type="checkbox" name="seat50" th:checked="*{seat50}" />
+                </td>
+                <td>
+                    <input id="seat51" type="checkbox" name="seat51" th:checked="*{seat51}" />
+                </td>
+                <td>
+                    <input id="seat52" type="checkbox" name="seat52" th:checked="*{seat52}" />
+                </td>
+                <td>
+                    <input id="seat53" type="checkbox" name="seat53" th:checked="*{seat53}" />
+                </td>
+                <td>
+                    <input id="seat54" type="checkbox" name="seat54" th:checked="*{seat54}" />
+                </td>
+                <td>
+                    <input id="seat55" type="checkbox" name="seat55" th:checked="*{seat55}" />
+                </td>
+                <td>
+                    <input id="seat56" type="checkbox" name="seat56" th:checked="*{seat56}" />
+                </td>
+            </tr>
+            <tr>
+                <td style="color: white;">
+                    E
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    <input id="seat57" type="checkbox" name="seat57" th:checked="*{seat57}" />
+                </td>
+                <td>
+                    <input id="seat58" type="checkbox" name="seat58" th:checked="*{seat58}" />
+                </td>
+                <td>
+                    <input id="seat59" type="checkbox" name="seat59" th:checked="*{seat59}" />
+                </td>
+                <td>
+                    <input id="seat60" type="checkbox" name="seat60" th:checked="*{seat60}" />
+                </td>
+                <td>
+                    <input id="seat61" type="checkbox" name="seat61" th:checked="*{seat61}" />
+                </td>
+                <td>
+                    <input id="seat62" type="checkbox" name="seat62" th:checked="*{seat62}" />
+                </td>
+                <td>
+                    <input id="seat63" type="checkbox" name="seat63" th:checked="*{seat63}" />
+                </td>
+                <td>
+                    <input id="seat64" type="checkbox" name="seat64" th:checked="*{seat64}" />
+                </td>
+                <td>
+                    <input id="seat65" type="checkbox" name="seat65" th:checked="*{seat65}" />
+                </td>
+                <td>
+                    <input id="seat66" type="checkbox" name="seat66" th:checked="*{seat66}" />
+                </td>
+                <td>
+                    <input id="seat67" type="checkbox" name="seat67" th:checked="*{seat67}" />
+                </td>
+                <td>
+                    <input id="seat68" type="checkbox" name="seat68" th:checked="*{seat68}" />
+                </td>
+                <td>
+                    <input id="seat69" type="checkbox" name="seat69" th:checked="*{seat69}" />
+                </td>
+                <td>
+                    <input id="seat70" type="checkbox" name="seat70" th:checked="*{seat70}" />
+                </td>
+            </tr>
+            <tr>
+                <td style="color: white;">
+                    F
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    <input id="seat71" type="checkbox" name="seat71" th:checked="*{seat71}" />
+                </td>
+                <td>
+                    <input id="seat72" type="checkbox" name="seat72" th:checked="*{seat72}" />
+                </td>
+                <td>
+                    <input id="seat73" type="checkbox" name="seat73" th:checked="*{seat73}" />
+                </td>
+                <td>
+                    <input id="seat74" type="checkbox" name="seat74" th:checked="*{seat74}" />
+                </td>
+                <td>
+                    <input id="seat75" type="checkbox" name="seat75" th:checked="*{seat75}" />
+                </td>
+                <td>
+                    <input id="seat76" type="checkbox" name="seat76" th:checked="*{seat76}" />
+                </td>
+                <td>
+                    <input id="seat77" type="checkbox" name="seat77" th:checked="*{seat77}" />
+                </td>
+                <td>
+                    <input id="seat78" type="checkbox" name="seat78" th:checked="*{seat78}" />
+                </td>
+                <td>
+                    <input id="seat79" type="checkbox" name="seat79" th:checked="*{seat79}" />
+                </td>
+                <td>
+                    <input id="seat80" type="checkbox" name="seat80" th:checked="*{seat80}" />
+                </td>
+                <td>
+                    <input id="seat81" type="checkbox" name="seat81" th:checked="*{seat81}" />
+                </td>
+                <td>
+                    <input id="seat82" type="checkbox" name="seat82" th:checked="*{seat82}" />
+                </td>
+                <td>
+                    <input id="seat83" type="checkbox" name="seat83" th:checked="*{seat83}" />
+                </td>
+                <td style="background-color: red">
+                    <input id="seat84" type="checkbox" name="seat84" th:checked="*{seat84}" />
+                </td>
+            </tr>
+            <tr>
+                <td style="color: white;">
+                    G
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    <input id="seat85" type="checkbox" name="seat85" th:checked="*{seat85}" />
+                </td>
+                <td>
+                    <input id="seat86" type="checkbox" name="seat86" th:checked="*{seat86}" />
+                </td>
+                <td>
+                    <input id="seat87" type="checkbox" name="seat87" th:checked="*{seat87}" />
+                </td>
+                <td>
+                    <input id="seat88" type="checkbox" name="seat88" th:checked="*{seat88}" th:action="${input}"/>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+
+        <div class="flip-box" style="margin-left:auto;margin-right: auto;">
+            <div class="flip-box-inner">
+                <div class="flip-box-front">
+                    <h2>Screen</h2>
+                </div>
+                <div class="flip-box-back">
+                    <h2>Screen</h2>
+                </div>
+            </div>
+        </div>
+
+      <button type="submit">submit</button>
+
+      </label>
+    </form>
+  </body>
+</html>
