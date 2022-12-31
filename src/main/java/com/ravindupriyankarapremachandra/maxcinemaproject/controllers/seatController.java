@@ -14,6 +14,7 @@ public class seatController {
     public String seats(Model model){
         model.addAttribute("userSeat",new BookSeat());
         model.addAttribute("filmName","Avatar 02"); // use this on database
+        model.addAttribute("seat01","booked");
 
         return "seat";
     }
