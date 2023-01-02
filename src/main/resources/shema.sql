@@ -12,6 +12,20 @@ CREATE TABLE IF NOT EXISTS seat(
     user_id int not null
 );
 
+/*CREATE OR REPLACE PROCEDURE clean_seat() AS '
+    DELETE FROM seat
+    WHERE status = FALSE;
+' LANGUAGE SQL;*/
+
+CREATE TRIGGER manage_seat
+    AFTER INSERT
+    ON seat
+    FOR EACH ROW
+EXECUTE PROCEDURE public.clean_seat();
+
+
+
+
 
 /*I need to include some different values to this database bt it not possible to
 

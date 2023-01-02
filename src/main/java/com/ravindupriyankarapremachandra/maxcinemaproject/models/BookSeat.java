@@ -1,5 +1,10 @@
 package com.ravindupriyankarapremachandra.maxcinemaproject.models;
 
+import com.ravindupriyankarapremachandra.maxcinemaproject.entity.Seat;
+import com.ravindupriyankarapremachandra.maxcinemaproject.repo.SeatRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+
+
 public class BookSeat {
     private boolean seat01,seat02,seat03,seat04,seat05,seat06,seat07,seat08,seat09,seat10,seat11,seat12,seat13,seat14;
     private boolean seat15,seat16,seat17,seat18,seat19,seat20,seat21,seat22,seat23,seat24,seat25,seat26,seat27,seat28;
@@ -712,4 +717,5 @@ public class BookSeat {
     public void setSeat88(boolean seat88) {
         this.seat88 = seat88;
     }
+
 }

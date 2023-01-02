@@ -22,8 +22,8 @@ public class SeatService {
         return seatDto;
     }
 
-    public seatDTO findBySeat_id(int seat_id){
-        Seat seat = seatRepo.findBySeat_id(seat_id);
+    public seatDTO findBySeat_id(){
+        Seat seat = seatRepo.findBySeat_id();
         return modelMapper.map(seat,seatDTO.class);
     }
 }

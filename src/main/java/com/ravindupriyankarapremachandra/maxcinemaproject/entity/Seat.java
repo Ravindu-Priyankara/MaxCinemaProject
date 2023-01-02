@@ -21,4 +21,5 @@ public class Seat {
         this.status = status;
         this.user_id = user_id;
     }
+
 }
