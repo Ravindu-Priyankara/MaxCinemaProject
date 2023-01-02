@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>seat booking</title>
@@ -138,7 +138,7 @@
       <br>
 
   </label>
-    <form th:action="bookseat" th:method="post" th:object="${userSeat}">
+    <form th:action="bookSeat" th:method="post" th:object="${userSeat}">
         <table style="margin-left: auto;margin-right: auto">
             <th>
                 <td>
@@ -197,7 +197,7 @@
                 <td>
                     <span th:if="${seat01 != 'booked'}">
                         <div class="checkbox-wrapper-26">
-                            <input id="seat01" type="checkbox" name="seat01" th:checked="*{seat01}" />
+                            <input id="seat01" type="checkbox" name="seat01" th:checked="*{seat01}"/>
                             <label for="seat01">
                                 <div class="tick_mark"></div>
                             </label>
@@ -205,20 +205,29 @@
                     </span>
                     <span th:unless="${seat01 != 'booked'}">
                         <div class="checkbox-wrapper-26">
-                            <input id="seat010" type="checkbox" name="seat01" th:checked="*{seat01}" disabled/>
-                            <label for="seat010">
+                            <input id="seat0101" type="checkbox" name="seat012" th:checked="*{seat01}" disabled/>
+                            <label for="seat0101">
                                 <div class="tick_mark"></div>
                             </label>
                         </div>
                     </span>
                 </td>
-                <td>
-                    <div class="checkbox-wrapper-26">
-                        <input id="seat02" type="checkbox" name="seat02" th:checked="*{seat02}" />
-                        <label for="seat02">
-                            <div class="tick_mark"></div>
-                        </label>
-                    </div>
+                    <span th:if="${seat02 != 'booked'}">
+                        <div class="checkbox-wrapper-26">
+                            <input id="seat02" type="checkbox" name="seat02" th:checked="*{seat02}"/>
+                            <label for="seat02">
+                                <div class="tick_mark"></div>
+                            </label>
+                        </div>
+                    </span>
+                    <span th:unless="${seat02 != 'booked'}">
+                            <div class="checkbox-wrapper-26">
+                                <input id="seat0202" type="checkbox" name="seat02" th:checked="*{seat02}"/>
+                                <label for="seat0202">
+                                    <div class="tick_mark"></div>
+                                </label>
+                            </div>
+                        </span>
                 </td>
                 <td>
                     <div class="checkbox-wrapper-26">
@@ -950,7 +959,7 @@
                 </td>
                 <td>
                     <div class="checkbox-wrapper-26">
-                        <input id="seat88" type="checkbox" name="seat88" th:checked="*{seat88}" th:action="${input}"/>
+                        <input id="seat88" type="checkbox" name="seat88" th:checked="*{seat88}"/>
                         <label for="seat88">
                             <div class="tick_mark"></div>
                         </label>

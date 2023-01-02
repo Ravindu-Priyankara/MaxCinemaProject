@@ -8,11 +8,17 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Data
 public class Seat {
     @Id
     private int seat_id;
     private boolean status;
     private int user_id;
+
+    public Seat(int seat_id, boolean status, int user_id) {
+        this.seat_id = seat_id;
+        this.status = status;
+        this.user_id = user_id;
+    }
 }
