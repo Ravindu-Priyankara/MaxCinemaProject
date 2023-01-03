@@ -4,6 +4,7 @@ import com.ravindupriyankarapremachandra.maxcinemaproject.dto.seatDTO;
 import com.ravindupriyankarapremachandra.maxcinemaproject.entity.Seat;
 import com.ravindupriyankarapremachandra.maxcinemaproject.repo.SeatRepo;
 import jakarta.transaction.Transactional;
+import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,4 @@ public class SeatService {
         return seatDto;
     }
 
-    public seatDTO findBySeat_id(){
-        Seat seat = seatRepo.findBySeat_id();
-        return modelMapper.map(seat,seatDTO.class);
-    }
 }

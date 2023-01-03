@@ -7,21 +7,43 @@
 );
 */
 CREATE TABLE IF NOT EXISTS seat(
-    seat_id int primary key unique,
+    seat_id int primary key ,
+    seat_no int not null ,
     status boolean not null,
     user_id int not null
 );
+
+/*CREATE FUNCTION delete_old_rows() RETURNS trigger
+    LANGUAGE plpgsql
+AS $$
+DECLARE
+    row_count int;
+BEGIN
+    DELETE FROM seat WHERE status = false;
+    IF found THEN
+        GET DIAGNOSTICS row_count = ROW_COUNT;
+        RAISE NOTICE 'DELETEd % row(s) FROM seat', row_count;
+    END IF;
+    RETURN NULL;
+END;
+$$;*/
+
+/*CREATE TRIGGER InsteadDELETETrigger
+    AFTER INSERT
+    ON seat
+    DELETE FROM seat WHERE status = false;
+end*/
 
 /*CREATE OR REPLACE PROCEDURE clean_seat() AS '
     DELETE FROM seat
     WHERE status = FALSE;
 ' LANGUAGE SQL;*/
 
-CREATE TRIGGER manage_seat
+/*CREATE TRIGGER manage_seat
     AFTER INSERT
     ON seat
     FOR EACH ROW
-EXECUTE PROCEDURE public.clean_seat();
+    EXECUTE PROCEDURE clean_seat();*/
 
 
 
