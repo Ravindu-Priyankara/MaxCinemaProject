@@ -17,5 +17,5 @@ public interface SeatRepo extends JpaRepository<Seat,Integer> {
     @Override
     void delete(Seat status);*/
 
-    long deleteByStatus(boolean value);
+    //long deleteByStatus(boolean value);
 }

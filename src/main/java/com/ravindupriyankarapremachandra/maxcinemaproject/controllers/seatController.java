@@ -26,12 +26,12 @@ public class seatController {
     @GetMapping("/seats")
     public String seats(Model model) {
 
-        long deleteRows = seatRepo.deleteByStatus(false);
+        //long deleteRows = seatRepo.deleteByStatus(false);
 
 
 
         model.addAttribute("userSeat", new BookSeat());
-        //model.addAttribute("filmName", "Avatar 02"); // use this on database
+        model.addAttribute("filmName", "Avatar 02"); // use this on database
         model.addAttribute("listOfSeats", seatRepo.getAllRecords(1));
         model.addAttribute("listOfSeats2", seatRepo.getAllRecords(2));
         model.addAttribute("listOfSeats3", seatRepo.getAllRecords(3));
@@ -47,15 +47,89 @@ public class seatController {
         model.addAttribute("listOfSeats12", seatRepo.getAllRecords(12));
         model.addAttribute("listOfSeats13", seatRepo.getAllRecords(13));
         model.addAttribute("listOfSeats14", seatRepo.getAllRecords(14));
-
-        /*model.addAttribute("listOfSeats15", seatRepo.getAllRecords(15));
+        model.addAttribute("listOfSeats15", seatRepo.getAllRecords(15));
         model.addAttribute("listOfSeats16", seatRepo.getAllRecords(16));
         model.addAttribute("listOfSeats17", seatRepo.getAllRecords(17));
         model.addAttribute("listOfSeats18", seatRepo.getAllRecords(18));
         model.addAttribute("listOfSeats19", seatRepo.getAllRecords(19));
-        model.addAttribute("listOfSeats20", seatRepo.getAllRecords(20));*/
+        model.addAttribute("listOfSeats20", seatRepo.getAllRecords(20));
 
-        model.addAttribute("filmName", deleteRows);
+        model.addAttribute("listOfSeats21", seatRepo.getAllRecords(21));
+        model.addAttribute("listOfSeats22", seatRepo.getAllRecords(22));
+        model.addAttribute("listOfSeats23", seatRepo.getAllRecords(23));
+        model.addAttribute("listOfSeats24", seatRepo.getAllRecords(24));
+        model.addAttribute("listOfSeats25", seatRepo.getAllRecords(25));
+        model.addAttribute("listOfSeats26", seatRepo.getAllRecords(26));
+        model.addAttribute("listOfSeats27", seatRepo.getAllRecords(27));
+        model.addAttribute("listOfSeats28", seatRepo.getAllRecords(28));
+        model.addAttribute("listOfSeats29", seatRepo.getAllRecords(29));
+        model.addAttribute("listOfSeats30", seatRepo.getAllRecords(30));
+
+        model.addAttribute("listOfSeats31", seatRepo.getAllRecords(31));
+        model.addAttribute("listOfSeats32", seatRepo.getAllRecords(32));
+        model.addAttribute("listOfSeats33", seatRepo.getAllRecords(33));
+        model.addAttribute("listOfSeats34", seatRepo.getAllRecords(34));
+        model.addAttribute("listOfSeats35", seatRepo.getAllRecords(35));
+        model.addAttribute("listOfSeats36", seatRepo.getAllRecords(36));
+        model.addAttribute("listOfSeats37", seatRepo.getAllRecords(37));
+        model.addAttribute("listOfSeats38", seatRepo.getAllRecords(38));
+        model.addAttribute("listOfSeats39", seatRepo.getAllRecords(39));
+        model.addAttribute("listOfSeats40", seatRepo.getAllRecords(40));
+
+        model.addAttribute("listOfSeats41", seatRepo.getAllRecords(41));
+        model.addAttribute("listOfSeats42", seatRepo.getAllRecords(42));
+        model.addAttribute("listOfSeats43", seatRepo.getAllRecords(43));
+        model.addAttribute("listOfSeats44", seatRepo.getAllRecords(44));
+        model.addAttribute("listOfSeats45", seatRepo.getAllRecords(45));
+        model.addAttribute("listOfSeats46", seatRepo.getAllRecords(46));
+        model.addAttribute("listOfSeats47", seatRepo.getAllRecords(47));
+        model.addAttribute("listOfSeats48", seatRepo.getAllRecords(48));
+        model.addAttribute("listOfSeats49", seatRepo.getAllRecords(49));
+        model.addAttribute("listOfSeats50", seatRepo.getAllRecords(50));
+
+        model.addAttribute("listOfSeats51", seatRepo.getAllRecords(51));
+        model.addAttribute("listOfSeats52", seatRepo.getAllRecords(52));
+        model.addAttribute("listOfSeats53", seatRepo.getAllRecords(53));
+        model.addAttribute("listOfSeats54", seatRepo.getAllRecords(54));
+        model.addAttribute("listOfSeats55", seatRepo.getAllRecords(55));
+        model.addAttribute("listOfSeats56", seatRepo.getAllRecords(56));
+        model.addAttribute("listOfSeats57", seatRepo.getAllRecords(57));
+        model.addAttribute("listOfSeats58", seatRepo.getAllRecords(58));
+        model.addAttribute("listOfSeats59", seatRepo.getAllRecords(59));
+        model.addAttribute("listOfSeats60", seatRepo.getAllRecords(60));
+
+        model.addAttribute("listOfSeats61", seatRepo.getAllRecords(61));
+        model.addAttribute("listOfSeats62", seatRepo.getAllRecords(62));
+        model.addAttribute("listOfSeats63", seatRepo.getAllRecords(63));
+        model.addAttribute("listOfSeats64", seatRepo.getAllRecords(64));
+        model.addAttribute("listOfSeats65", seatRepo.getAllRecords(65));
+        model.addAttribute("listOfSeats66", seatRepo.getAllRecords(66));
+        model.addAttribute("listOfSeats67", seatRepo.getAllRecords(67));
+        model.addAttribute("listOfSeats68", seatRepo.getAllRecords(68));
+        model.addAttribute("listOfSeats69", seatRepo.getAllRecords(69));
+        model.addAttribute("listOfSeats70", seatRepo.getAllRecords(70));
+
+        model.addAttribute("listOfSeats71", seatRepo.getAllRecords(71));
+        model.addAttribute("listOfSeats72", seatRepo.getAllRecords(72));
+        model.addAttribute("listOfSeats73", seatRepo.getAllRecords(73));
+        model.addAttribute("listOfSeats74", seatRepo.getAllRecords(74));
+        model.addAttribute("listOfSeats75", seatRepo.getAllRecords(75));
+        model.addAttribute("listOfSeats76", seatRepo.getAllRecords(76));
+        model.addAttribute("listOfSeats77", seatRepo.getAllRecords(77));
+        model.addAttribute("listOfSeats78", seatRepo.getAllRecords(78));
+        model.addAttribute("listOfSeats79", seatRepo.getAllRecords(79));
+        model.addAttribute("listOfSeats80", seatRepo.getAllRecords(80));
+
+        model.addAttribute("listOfSeats81", seatRepo.getAllRecords(81));
+        model.addAttribute("listOfSeats82", seatRepo.getAllRecords(82));
+        model.addAttribute("listOfSeats83", seatRepo.getAllRecords(83));
+        model.addAttribute("listOfSeats84", seatRepo.getAllRecords(84));
+        model.addAttribute("listOfSeats85", seatRepo.getAllRecords(85));
+        model.addAttribute("listOfSeats86", seatRepo.getAllRecords(86));
+        model.addAttribute("listOfSeats87", seatRepo.getAllRecords(87));
+        model.addAttribute("listOfSeats88", seatRepo.getAllRecords(88));
+
+        //model.addAttribute("filmName", deleteRows);
 
 
 
