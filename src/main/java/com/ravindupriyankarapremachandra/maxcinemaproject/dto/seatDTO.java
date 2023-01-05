@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class seatDTO {
-    private int seat_id;
+    private int seat_no;
     private boolean status;
     private int user_id;
 }
