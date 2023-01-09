@@ -578,7 +578,7 @@ public class seatController {
     }
 
 
-    @GetMapping({"/list", "/"})
+    /*@GetMapping({"/list", "/"})
     public ModelAndView getAllEmployees() {
         ModelAndView mav = new ModelAndView("list-employees");
         mav.addObject("employees", seatRepo.findAll());
@@ -590,5 +590,5 @@ public class seatController {
         mav.addObject("employees",seatRepo.getAllRecords(1));
         return mav;
 
-    }
+    }*/
 }

@@ -1,11 +1,11 @@
 
-/*CREATE TABLE IF NOT EXISTS Users(
+CREATE TABLE IF NOT EXISTS Users(
     id int PRIMARY KEY UNIQUE,
     username varchar(255) check (length(username)> 5) not null ,
     password varchar(255) check ( length(password) > 8 ) not null ,
     phone_number varchar(10) not null
 );
-*/
+
 CREATE TABLE IF NOT EXISTS seat(
     seat_no int primary key ,
     status boolean not null,
