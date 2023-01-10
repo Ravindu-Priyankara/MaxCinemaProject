@@ -1,16 +1,17 @@
 package com.ravindupriyankarapremachandra.maxcinemaproject.controllers;
 
 import com.ravindupriyankarapremachandra.maxcinemaproject.entity.Seat;
+import com.ravindupriyankarapremachandra.maxcinemaproject.entity.Seats;
 import com.ravindupriyankarapremachandra.maxcinemaproject.models.BookSeat;
+import com.ravindupriyankarapremachandra.maxcinemaproject.repo.MovieRepo;
 import com.ravindupriyankarapremachandra.maxcinemaproject.repo.SeatRepo;
+import com.ravindupriyankarapremachandra.maxcinemaproject.repo.SeatsRepo;
+import com.ravindupriyankarapremachandra.maxcinemaproject.repo.UserRepo;
 import com.ravindupriyankarapremachandra.maxcinemaproject.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -25,9 +26,18 @@ public class seatController {
     @Autowired
     SeatService seatService;
 
+    @Autowired
+    SeatsRepo seatsRepo;
 
-    @GetMapping("/seats")
-    public String seats(Model model, @CookieValue(value = "USERNAME")String userName) {
+    @Autowired
+    UserRepo userRepo;
+
+    @Autowired
+    MovieRepo movieRepo;
+
+
+    @GetMapping("/seats/{film_name}")
+    public String seats(Model model, @CookieValue(value = "USERNAME")String userName,@PathVariable("film_name") String name) {
 
         System.out.println(userName);
 
@@ -36,7 +46,7 @@ public class seatController {
 
 
         model.addAttribute("userSeat", new BookSeat());
-        model.addAttribute("filmName", "Avatar 02"); // use this on database
+        model.addAttribute("filmName", name); // use this on url
         model.addAttribute("listOfSeats", seatRepo.getAllRecords(1));
         model.addAttribute("listOfSeats2", seatRepo.getAllRecords(2));
         model.addAttribute("listOfSeats3", seatRepo.getAllRecords(3));
@@ -143,12 +153,12 @@ public class seatController {
     }
 
     @PostMapping("bookSeat")
-    public String getSeat(@ModelAttribute BookSeat bookSeat, Model model){
+    public String getSeat(@ModelAttribute BookSeat bookSeat, Model model,@CookieValue(value = "USERNAME")String username){
 
 
         if(bookSeat.isSeat01()){
-            Seat seat01 = new Seat(1, bookSeat.isSeat01(), 1);
-            seatRepo.save(seat01);
+            Seats seats01 = new Seats(1,bookSeat.isSeat01(),userRepo.findByUsername(username), movieRepo.getMovieByName(bookSeat.getName()));
+            seatsRepo.save(seats01);
             seat_count +=1;
         }
         if(bookSeat.isSeat02()){
@@ -670,12 +680,12 @@ public class seatController {
 
 
         model.addAttribute("userSeat",new BookSeat());
-        return "payment";
+        return "redirect:payment/"+seat_count;
     }
 
-    @GetMapping("/payment")
-    public String payment(Model model){
-        int value = ((seat_count * 670)/370);
+    @GetMapping("/payment/{value}") // pass values through the url
+    public String payment(Model model, @PathVariable("value") int values){
+        double value = (double) (values * 1.81); //type casting
         model.addAttribute("value",value);
         model.addAttribute("currency","USD");
         return "payment";

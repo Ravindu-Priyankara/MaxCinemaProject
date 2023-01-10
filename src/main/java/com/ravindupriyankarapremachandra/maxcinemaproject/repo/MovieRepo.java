@@ -12,4 +12,7 @@ public interface MovieRepo extends JpaRepository<Movie,Integer> {
 
     @Query(value = "Select * from movies m where m.id = ?1",nativeQuery = true)
     List<Movie> getAllById(int id);
+
+    @Query(value = "select id from movies m where name = ?1",nativeQuery = true)
+    int getMovieByName(String name);
 }

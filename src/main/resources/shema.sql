@@ -21,6 +21,12 @@ CREATE TABLE IF NOT EXISTS Movies(
     img_link varchar(255) not null
 );
 
+CREATE TABLE if not exists seats(
+    seat_no int primary key ,
+    status boolean not null,
+    user_id int not null,
+    CONSTRAINT fk_seat foreign key (user_id) references Users(id)
+);
 /*CREATE FUNCTION delete_old_rows() RETURNS trigger
     LANGUAGE plpgsql
 AS $$

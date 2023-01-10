@@ -9,6 +9,16 @@ public class BookSeat {
     private boolean seat71,seat72,seat73,seat74,seat75,seat76,seat77,seat78,seat79,seat80,seat81,seat82,seat83,seat84;
     private boolean seat85,seat86,seat87,seat88;
 
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public boolean isSeat01() {
         return seat01;
     }

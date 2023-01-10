@@ -129,16 +129,17 @@
   <br>
   <br>
   <br>
-  <label>
+  <form action="/bookSeat" th:method="post" th:object="${userSeat}" th:field="*{name}">
+      <label>
 
-      <div style="text-align: left;"><button class="button-92" role="button"><h1 th:text="${filmName}"/></button></div>
+          <div style="text-align: left;"><button class="button-92" role="button"><h1 th:text="${filmName}"/></button></div>
 
-      <br>
-      <br>
-      <br>
+          <br>
+          <br>
+          <br>
 
-  </label>
-    <form th:action="bookSeat" th:method="post" th:object="${userSeat}">
+      </label>
+
         <table style="margin-left: auto;margin-right: auto">
             <th>
                 <td>
@@ -2020,11 +2021,7 @@
             </div>
         </div>
 
-        <table>
-            <td th:each="seats :${list}">
-                    <h1 th:text="${seats.status == true}">yes</h1>
-            </td>
-        </table>
+
 
       <!--<button type="submit">submit</button>-->
         <button class="button-73" role="button">Submit</button>
