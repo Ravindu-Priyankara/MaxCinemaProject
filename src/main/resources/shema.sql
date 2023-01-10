@@ -3,13 +3,22 @@ CREATE TABLE IF NOT EXISTS Users(
     id int PRIMARY KEY UNIQUE,
     username varchar(255) check (length(username)> 5) not null ,
     password varchar(255) check ( length(password) > 8 ) not null ,
-    phone_number varchar(10) not null
+    phone_number varchar(10) not null,
+    email varchar(255) not null unique
+
 );
 
 CREATE TABLE IF NOT EXISTS seat(
     seat_no int primary key ,
     status boolean not null,
     user_id int not null
+);
+
+CREATE TABLE IF NOT EXISTS Movies(
+    id int PRIMARY KEY UNIQUE ,
+    name varchar(255) not null ,
+    release_date date,
+    img_link varchar(255) not null
 );
 
 /*CREATE FUNCTION delete_old_rows() RETURNS trigger

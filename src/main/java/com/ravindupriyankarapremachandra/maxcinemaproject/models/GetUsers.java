@@ -15,5 +15,6 @@ public class GetUsers {
     private String password;
     private String phNumber;
     private String retypePassword;
+    private String email;
 
 }

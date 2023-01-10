@@ -21,10 +21,11 @@ public class PaypalController {
 	public static final String SUCCESS_URL = "pay/success";
 	public static final String CANCEL_URL = "pay/cancel";
 
+	/*
 	@GetMapping("/payment")
 	public String home() {
 		return "payments";
-	}
+	}*/
 
 	@PostMapping("/pay")
 	public String payment(@ModelAttribute("order") Order order) {
