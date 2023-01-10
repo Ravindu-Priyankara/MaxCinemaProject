@@ -69,12 +69,12 @@ public class UserController {
             Cookie cookie = new Cookie("USERNAME",checkUsers.getUsername());
             response.addCookie(cookie);
 
-            System.out.println("login success");
+            //System.out.println("login success");
 
             return "redirect:http://127.0.0.1:8080/home";
         }
         else{
-            System.out.println("login not success");
+            //System.out.println("login not success");
             return "redirect:http://127.0.0.1:8080/home";
         }
     }
