@@ -3,36 +3,51 @@ package com.ravindupriyankarapremachandra.maxcinemaproject.controllers;
 import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
+import com.ravindupriyankarapremachandra.maxcinemaproject.entity.Mail;
+import com.ravindupriyankarapremachandra.maxcinemaproject.entity.Payments;
 import com.ravindupriyankarapremachandra.maxcinemaproject.models.Order;
+import com.ravindupriyankarapremachandra.maxcinemaproject.repo.MailRepo;
+import com.ravindupriyankarapremachandra.maxcinemaproject.repo.PaymentRepo;
+import com.ravindupriyankarapremachandra.maxcinemaproject.repo.UserRepo;
+import com.ravindupriyankarapremachandra.maxcinemaproject.service.MailService;
 import com.ravindupriyankarapremachandra.maxcinemaproject.service.PaypalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Random;
 
 @Controller
 public class PaypalController {
 
 	@Autowired
+	UserRepo userRepo;
+	@Autowired
 	PaypalService service;
+
+	@Autowired
+	MailRepo mailRepo;
+
+	@Autowired
+	MailService mailService;
+
+	@Autowired
+	PaymentRepo paymentRepo;
 
 	public static final String SUCCESS_URL = "pay/success";
 	public static final String CANCEL_URL = "pay/cancel";
 
-	/*
-	@GetMapping("/payment")
-	public String home() {
-		return "payments";
-	}*/
+	/**generate Random Number **/
+	Random rand = new Random();
+	int upperBound = 999999999;
+	int rand_number = rand.nextInt(upperBound);
 
 	@PostMapping("/pay")
 	public String payment(@ModelAttribute("order") Order order) {
 		try {
 			Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
-					order.getIntent(), order.getDescription(), "http://localhost:80/" + CANCEL_URL,
-					"http://localhost:80/" + SUCCESS_URL);
+					order.getIntent(), order.getDescription(), "http://127.0.0.1:8080/" + CANCEL_URL,
+					"http://127.0.0.1:8080/" + SUCCESS_URL+"/"+order.getPrice());
 			for(Links link:payment.getLinks()) {
 				if(link.getRel().equals("approval_url")) {
 					return "redirect:"+link.getHref();
@@ -43,20 +58,36 @@ public class PaypalController {
 		
 			e.printStackTrace();
 		}
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
 	 @GetMapping(value = CANCEL_URL)
-	    public String cancelPay() {
+	    public String cancelPay(@CookieValue(value = "USERNAME")String username) {
+		/*** Payment failed mail ***/
+			mailService.mailSend(userRepo.findByEmailMatches(username),"Payment Failed","Hi\t"+username+"Your payment is not success. Please contact us if you have an issue.\nThank you.");
+			/*** save mail in database **/
+			Mail mail = new Mail(rand_number,"payment","payment failed",userRepo.findByUsername(username));
+			mailRepo.save(mail);
+
 	        return "cancel";
 	    }
 
-	    @GetMapping(value = SUCCESS_URL)
-	    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
+	    @GetMapping(value = SUCCESS_URL+"/{amount}")
+	    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId,@PathVariable("amount") double amount,@CookieValue(value = "USERNAME")String username) {
 	        try {
 	            Payment payment = service.executePayment(paymentId, payerId);
 	            System.out.println(payment.toJSON());
 	            if (payment.getState().equals("approved")) {
+
+					/*** Payment Success mail ***/
+					mailService.mailSend(userRepo.findByEmailMatches(username),"Payment success","Hi\t"+username+"Your payment is  success. Please contact us if you have an issue.\nThank you.");
+					/*** save mail in database **/
+					Mail mail = new Mail(rand_number,"payment","payment success",userRepo.findByUsername(username));
+					mailRepo.save(mail);
+
+					Payments payments = new Payments(rand_number,amount,"paid successfully",userRepo.findByUsername(username));
+					paymentRepo.save(payments);
+
 	                return "success";
 	            }
 	        } catch (PayPalRESTException e) {

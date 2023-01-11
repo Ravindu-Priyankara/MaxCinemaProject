@@ -120,16 +120,16 @@
 </head>
   <body>
   <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#movies">Movies</a></li>
+      <li><a href="http://localhost:8080/home">Home</a></li>
+      <li><a href="http://localhost:8080/home">Movies</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="http://localhost:8080/about">About</a></li>
       <li><a class="active" href="http://localhost:8080/seats">Book a seat</a> </li>
   </ul>
   <br>
   <br>
   <br>
-  <form action="/bookSeat" th:method="post" th:object="${userSeat}" th:field="*{name}">
+  <form th:action="${'http://127.0.0.1:8080/seats/bookSeat/'+url}" th:method="post" th:object="${userSeat}">
       <label>
 
           <div style="text-align: left;"><button class="button-92" role="button"><h1 th:text="${filmName}"/></button></div>

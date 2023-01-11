@@ -1,18 +1,16 @@
 package com.ravindupriyankarapremachandra.maxcinemaproject.controllers;
 
-import com.ravindupriyankarapremachandra.maxcinemaproject.entity.Seat;
+import com.ravindupriyankarapremachandra.maxcinemaproject.entity.Cookies;
 import com.ravindupriyankarapremachandra.maxcinemaproject.entity.Seats;
 import com.ravindupriyankarapremachandra.maxcinemaproject.models.BookSeat;
-import com.ravindupriyankarapremachandra.maxcinemaproject.repo.MovieRepo;
-import com.ravindupriyankarapremachandra.maxcinemaproject.repo.SeatRepo;
-import com.ravindupriyankarapremachandra.maxcinemaproject.repo.SeatsRepo;
-import com.ravindupriyankarapremachandra.maxcinemaproject.repo.UserRepo;
+import com.ravindupriyankarapremachandra.maxcinemaproject.repo.*;
 import com.ravindupriyankarapremachandra.maxcinemaproject.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Random;
 
 
 @Controller
@@ -33,20 +31,27 @@ public class seatController {
     UserRepo userRepo;
 
     @Autowired
-    MovieRepo movieRepo;
+    MoviesRepo moviesRepo;
+
+    @Autowired
+    CookiesRepo cookiesRepo;
 
 
-    @GetMapping("/seats/{film_name}")
-    public String seats(Model model, @CookieValue(value = "USERNAME")String userName,@PathVariable("film_name") String name) {
+    @GetMapping("/seats/{film_name}/{username}")
+    public String seats(Model model,@PathVariable("film_name") String name,@PathVariable("username")String userName) {
 
-        System.out.println(userName);
+
 
         //long deleteRows = seatRepo.deleteByStatus(false);
+        Cookies cookies = new Cookies(1,userName);
+        cookiesRepo.save(cookies);
+
 
 
 
         model.addAttribute("userSeat", new BookSeat());
         model.addAttribute("filmName", name); // use this on url
+        model.addAttribute("url",name);
         model.addAttribute("listOfSeats", seatRepo.getAllRecords(1));
         model.addAttribute("listOfSeats2", seatRepo.getAllRecords(2));
         model.addAttribute("listOfSeats3", seatRepo.getAllRecords(3));
@@ -152,535 +157,904 @@ public class seatController {
         return "seat";
     }
 
-    @PostMapping("bookSeat")
-    public String getSeat(@ModelAttribute BookSeat bookSeat, Model model,@CookieValue(value = "USERNAME")String username){
+    @PostMapping("seats/bookSeat/{filmName}")
+    public String getSeat(@ModelAttribute BookSeat bookSeat, Model model,@PathVariable("filmName")String filmName){
+
+        String username = cookiesRepo.getCookiesById(1);
+        System.out.println("user name is:"+username);
+        System.out.println("user id is:-"+userRepo.findByUsername(username));
+        System.out.println("get movie id:"+moviesRepo.getMovieByName(filmName));
+
+
+        Random rand = new Random(); //generate random number
+        int upperBound = 999999999;
+        int rand_number = rand.nextInt(upperBound);
+
 
 
         if(bookSeat.isSeat01()){
-            Seats seats01 = new Seats(1,bookSeat.isSeat01(),userRepo.findByUsername(username), movieRepo.getMovieByName(bookSeat.getName()));
-            seatsRepo.save(seats01);
-            seat_count +=1;
-        }
-        if(bookSeat.isSeat02()){
-            Seat seat02 = new Seat(2, bookSeat.isSeat02(), 1);
-            seatRepo.save(seat02);
-            seat_count +=1;
+            try{
+                Seats seats01 = new Seats(rand_number, 1, true,userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats01);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
+        if (bookSeat.isSeat02()) {
+            try {
+                Seats seats02 = new Seats(rand_number, 2, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats02);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
+        }
+
+
         if(bookSeat.isSeat03()){
-            Seat seat03 = new Seat(3, bookSeat.isSeat03(), 1);
-            seatRepo.save(seat03);
-            seat_count +=1;
+            try{
+                Seats seats03 = new Seats(rand_number, 3, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats03);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat04()){
-            Seat seat04 = new Seat(4, bookSeat.isSeat04(), 1);
-            seatRepo.save(seat04);
-            seat_count +=1;
+            try{
+                Seats seats04 = new Seats(rand_number, 4, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats04);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat05()){
-            Seat seat05 = new Seat(5, bookSeat.isSeat05(), 1);
-            seatRepo.save(seat05);
-            seat_count +=1;
+            try{
+                Seats seats05 = new Seats(rand_number, 5, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats05);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat06()){
-            Seat seat06 = new Seat(6, bookSeat.isSeat06(), 1);
-            seatRepo.save(seat06);
-            seat_count +=1;
+            try{
+                Seats seats06 = new Seats(rand_number, 6, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats06);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat07()){
-            Seat seat07 = new Seat(7, bookSeat.isSeat07(), 1);
-            seatRepo.save(seat07);
-            seat_count +=1;
+            try{
+                Seats seats07 = new Seats(rand_number, 7, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats07);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat08()){
-            Seat seat08 = new Seat(8, bookSeat.isSeat08(), 1);
-            seatRepo.save(seat08);
-            seat_count +=1;
+            try{
+                Seats seats08 = new Seats(rand_number, 8, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats08);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat09()){
-            Seat seat09 = new Seat(9, bookSeat.isSeat09(), 1);
-            seatRepo.save(seat09);
-            seat_count +=1;
+            try{
+                Seats seats09 = new Seats(rand_number, 9, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats09);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat10()){
-            Seat seat10 = new Seat(10, bookSeat.isSeat10(), 1);
-            seatRepo.save(seat10);
-            seat_count +=1;
+            try{
+                Seats seats10 = new Seats(rand_number, 10, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats10);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat11()){
-            Seat seat11 = new Seat(11, bookSeat.isSeat11(), 1);
-            seatRepo.save(seat11);
-            seat_count +=1;
+            try{
+                Seats seats11 = new Seats(rand_number, 11, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats11);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
         if(bookSeat.isSeat12()){
-            Seat seat12 = new Seat(12, bookSeat.isSeat12(), 1);
-            seatRepo.save(seat12);
-            seat_count +=1;
+            try{
+                Seats seats12 = new Seats(rand_number, 12, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats12);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat13()){
-            Seat seat13 = new Seat(13, bookSeat.isSeat13(), 1);
-            seatRepo.save(seat13);
-            seat_count +=1;
+            try{
+                Seats seats13 = new Seats(rand_number, 13, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats13);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat14()){
-            Seat seat14 = new Seat(14, bookSeat.isSeat14(), 1);
-            seatRepo.save(seat14);
-            seat_count +=1;
+            try{
+                Seats seats14 = new Seats(rand_number, 14, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats14);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat15()){
-            Seat seat15 = new Seat(15, bookSeat.isSeat15(), 1);
-            seatRepo.save(seat15);
-            seat_count +=1;
+            try{
+                Seats seats15 = new Seats(rand_number, 15, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats15);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat16()){
-            Seat seat16 = new Seat(16, bookSeat.isSeat16(), 1);
-            seatRepo.save(seat16);
-            seat_count +=1;
+            try{
+                Seats seats16 = new Seats(rand_number, 16, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats16);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat17()){
-            Seat seat17 = new Seat(17, bookSeat.isSeat17(), 1);
-            seatRepo.save(seat17);
-            seat_count +=1;
+            try{
+                Seats seats17 = new Seats(rand_number, 17, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats17);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat18()){
-            Seat seat18 = new Seat(18, bookSeat.isSeat18(), 1);
-            seatRepo.save(seat18);
-            seat_count +=1;
+            try{
+                Seats seats18 = new Seats(rand_number, 18, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats18);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat19()){
-            Seat seat19 = new Seat(19, bookSeat.isSeat19(), 1);
-            seatRepo.save(seat19);
-            seat_count +=1;
+            try{
+                Seats seats19 = new Seats(rand_number, 19, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats19);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat20()){
-            Seat seat20 = new Seat(20, bookSeat.isSeat20(), 1);
-            seatRepo.save(seat20);
-            seat_count +=1;
+            try{
+                Seats seats20 = new Seats(rand_number, 20, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats20);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat21()){
-            Seat seat21 = new Seat(21, bookSeat.isSeat21(), 1);
-            seatRepo.save(seat21);
-            seat_count +=1;
+            try{
+                Seats seats21 = new Seats(rand_number, 21, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats21);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
         if(bookSeat.isSeat22()){
-            Seat seat22 = new Seat(22, bookSeat.isSeat22(), 1);
-            seatRepo.save(seat22);
-            seat_count +=1;
+            try{
+                Seats seats22 = new Seats(rand_number, 22, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats22);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat23()){
-            Seat seat23 = new Seat(23, bookSeat.isSeat23(), 1);
-            seatRepo.save(seat23);
-            seat_count +=1;
+            try{
+                Seats seats23 = new Seats(rand_number, 23, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats23);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat24()){
-            Seat seat24 = new Seat(24, bookSeat.isSeat24(), 1);
-            seatRepo.save(seat24);
-            seat_count +=1;
+            try{
+                Seats seats24 = new Seats(rand_number, 24, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats24);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat25()){
-            Seat seat25 = new Seat(25, bookSeat.isSeat25(), 1);
-            seatRepo.save(seat25);
-            seat_count +=1;
+            try{
+                Seats seats25 = new Seats(rand_number, 25, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats25);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat26()){
-            Seat seat26 = new Seat(26, bookSeat.isSeat26(), 1);
-            seatRepo.save(seat26);
-            seat_count +=1;
+            try{
+                Seats seats26 = new Seats(rand_number, 26, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats26);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat27()){
-            Seat seat27 = new Seat(27, bookSeat.isSeat27(), 1);
-            seatRepo.save(seat27);
-            seat_count +=1;
+            try{
+                Seats seats27 = new Seats(rand_number, 27, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats27);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat28()){
-            Seat seat28 = new Seat(28, bookSeat.isSeat28(), 1);
-            seatRepo.save(seat28);
-            seat_count +=1;
+            try{
+                Seats seats28 = new Seats(rand_number, 28, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats28);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
-        if(bookSeat.isSeat29()){
-            Seat seat29 = new Seat(29, bookSeat.isSeat29(), 1);
-            seatRepo.save(seat29);
-            seat_count +=1;
+        if(bookSeat.isSeat29()) {
+            try{
+
+                Seats seats29 = new Seats(rand_number, 29, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats29);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat30()){
-            Seat seat30 = new Seat(30, bookSeat.isSeat30(), 1);
-            seatRepo.save(seat30);
-            seat_count +=1;
+            try{
+                Seats seats30 = new Seats(rand_number, 30, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats30);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat31()){
-            Seat seat31 = new Seat(31, bookSeat.isSeat31(), 1);
-            seatRepo.save(seat31);
-            seat_count +=1;
+            try{
+                Seats seats31 = new Seats(rand_number, 31, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats31);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
         if(bookSeat.isSeat32()){
-            Seat seat32 = new Seat(32, bookSeat.isSeat32(), 1);
-            seatRepo.save(seat32);
-            seat_count +=1;
+            try{
+                Seats seats32 = new Seats(rand_number, 32, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats32);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat33()){
-            Seat seat33 = new Seat(33, bookSeat.isSeat33(), 1);
-            seatRepo.save(seat33);
-            seat_count +=1;
+            try{
+                Seats seats33 = new Seats(rand_number, 33, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats33);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat34()){
-            Seat seat34 = new Seat(34, bookSeat.isSeat34(), 1);
-            seatRepo.save(seat34);
-            seat_count +=1;
+            try{
+                Seats seats34 = new Seats(rand_number, 34, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats34);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat35()){
-            Seat seat35 = new Seat(35, bookSeat.isSeat35(), 1);
-            seatRepo.save(seat35);
-            seat_count +=1;
+            try{
+                Seats seats35 = new Seats(rand_number, 35, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats35);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat36()){
-            Seat seat36 = new Seat(36, bookSeat.isSeat36(), 1);
-            seatRepo.save(seat36);
-            seat_count +=1;
+            try{
+                Seats seats36 = new Seats(rand_number, 36, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats36);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat37()){
-            Seat seat37 = new Seat(37, bookSeat.isSeat37(), 1);
-            seatRepo.save(seat37);
-            seat_count +=1;
+            try{
+                Seats seats37 = new Seats(rand_number, 37, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats37);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat38()){
-            Seat seat38 = new Seat(38, bookSeat.isSeat38(), 1);
-            seatRepo.save(seat38);
-            seat_count +=1;
+            try{
+                Seats seats38 = new Seats(rand_number, 38, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats38);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat39()){
-            Seat seat39 = new Seat(39, bookSeat.isSeat39(), 1);
-            seatRepo.save(seat39);
-            seat_count +=1;
+            try{
+                Seats seats39 = new Seats(rand_number, 39, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats39);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat40()){
-            Seat seat40 = new Seat(40, bookSeat.isSeat40(), 1);
-            seatRepo.save(seat40);
-            seat_count +=1;
+            try{
+                Seats seats40 = new Seats(rand_number, 40, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats40);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat41()){
-            Seat seat41 = new Seat(41, bookSeat.isSeat41(), 1);
-            seatRepo.save(seat41);
-            seat_count +=1;
+            try{
+                Seats seats41 = new Seats(rand_number, 41, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats41);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
         if(bookSeat.isSeat42()){
-            Seat seat42 = new Seat(42, bookSeat.isSeat42(), 1);
-            seatRepo.save(seat42);
-            seat_count +=1;
+            try{
+                Seats seats42 = new Seats(rand_number, 42, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats42);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat43()){
-            Seat seat43 = new Seat(43, bookSeat.isSeat43(), 1);
-            seatRepo.save(seat43);
-            seat_count +=1;
+            try{
+                Seats seats43 = new Seats(rand_number, 43, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats43);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat44()){
-            Seat seat44 = new Seat(44, bookSeat.isSeat44(), 1);
-            seatRepo.save(seat44);
-            seat_count +=1;
+            try{
+                Seats seats44 = new Seats(rand_number, 44, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats44);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat45()){
-            Seat seat45 = new Seat(45, bookSeat.isSeat45(), 1);
-            seatRepo.save(seat45);
-            seat_count +=1;
+            try{
+                Seats seats45 = new Seats(rand_number,45,true,userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats45);
+                seat_count +=1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat46()){
-            Seat seat46 = new Seat(46, bookSeat.isSeat46(), 1);
-            seatRepo.save(seat46);
-            seat_count +=1;
+            try{
+                Seats seats46 = new Seats(rand_number, 46, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats46);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat47()){
-            Seat seat47 = new Seat(47, bookSeat.isSeat47(), 1);
-            seatRepo.save(seat47);
-            seat_count +=1;
+            try{
+                Seats seats47 = new Seats(rand_number, 47, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats47);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat48()){
-            Seat seat48 = new Seat(48, bookSeat.isSeat48(), 1);
-            seatRepo.save(seat48);
-            seat_count +=1;
+            try{
+                Seats seats48 = new Seats(rand_number, 48, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats48);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat49()){
-            Seat seat49 = new Seat(49, bookSeat.isSeat49(), 1);
-            seatRepo.save(seat49);
-            seat_count +=1;
+            try{
+                Seats seats49 = new Seats(rand_number, 49, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats49);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat50()){
-            Seat seat50 = new Seat(50, bookSeat.isSeat50(), 1);
-            seatRepo.save(seat50);
-            seat_count +=1;
+            try{
+                Seats seats50 = new Seats(rand_number, 50, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats50);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat51()){
-            Seat seat51 = new Seat(51, bookSeat.isSeat51(), 1);
-            seatRepo.save(seat51);
-            seat_count +=1;
+            try{
+                Seats seats51 = new Seats(rand_number, 51, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats51);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat52()){
-            Seat seat52 = new Seat(52, bookSeat.isSeat52(), 1);
-            seatRepo.save(seat52);
-            seat_count +=1;
+            try{
+                Seats seats52 = new Seats(rand_number, 52, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats52);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat53()){
-            Seat seat53 = new Seat(53, bookSeat.isSeat53(), 1);
-            seatRepo.save(seat53);
-            seat_count +=1;
+            try{
+                Seats seats53 = new Seats(rand_number, 53, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats53);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat54()){
-            Seat seat54 = new Seat(54, bookSeat.isSeat54(), 1);
-            seatRepo.save(seat54);
-            seat_count +=1;
+            try{
+                Seats seats54 = new Seats(rand_number, 54, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats54);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat55()){
-            Seat seat55 = new Seat(55, bookSeat.isSeat55(), 1);
-            seatRepo.save(seat55);
-            seat_count +=1;
+            try{
+                Seats seats55 = new Seats(rand_number, 55, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats55);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat56()){
-            Seat seat56 = new Seat(56, bookSeat.isSeat56(), 1);
-            seatRepo.save(seat56);
-            seat_count +=1;
+            try{
+                Seats seats56 = new Seats(rand_number, 56, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats56);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat57()){
-            Seat seat57 = new Seat(57, bookSeat.isSeat57(), 1);
-            seatRepo.save(seat57);
-            seat_count +=1;
+            try{
+                Seats seats57 = new Seats(rand_number, 57, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats57);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat58()){
-            Seat seat58 = new Seat(58, bookSeat.isSeat58(), 1);
-            seatRepo.save(seat58);
-            seat_count +=1;
+            try{
+                Seats seats58 = new Seats(rand_number, 58, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats58);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat59()){
-            Seat seat59 = new Seat(59, bookSeat.isSeat59(), 1);
-            seatRepo.save(seat59);
-            seat_count +=1;
+            try{
+                Seats seats59 = new Seats(rand_number, 59, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats59);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat60()){
-            Seat seat60 = new Seat(60, bookSeat.isSeat60(), 1);
-            seatRepo.save(seat60);
-            seat_count +=1;
+            try{
+                Seats seats60 = new Seats(rand_number, 60, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats60);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat61()){
-            Seat seat61 = new Seat(61, bookSeat.isSeat61(), 1);
-            seatRepo.save(seat61);
-            seat_count +=1;
+            try{
+                Seats seats61 = new Seats(rand_number, 61, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats61);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
         if(bookSeat.isSeat62()){
-            Seat seat62 = new Seat(62, bookSeat.isSeat62(), 1);
-            seatRepo.save(seat62);
-            seat_count +=1;
+            try{
+                Seats seats62 = new Seats(rand_number, 62, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats62);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat63()){
-            Seat seat63 = new Seat(63, bookSeat.isSeat63(), 1);
-            seatRepo.save(seat63);
-            seat_count +=1;
+            try{
+                Seats seats63 = new Seats(rand_number, 63, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats63);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat64()){
-            Seat seat64 = new Seat(64, bookSeat.isSeat64(), 1);
-            seatRepo.save(seat64);
-            seat_count +=1;
+            try{
+                Seats seats64 = new Seats(rand_number, 64, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats64);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat65()){
-            Seat seat65 = new Seat(65, bookSeat.isSeat65(), 1);
-            seatRepo.save(seat65);
-            seat_count +=1;
+            try{
+                Seats seats65 = new Seats(rand_number, 65, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats65);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat66()){
-            Seat seat66 = new Seat(66, bookSeat.isSeat66(), 1);
-            seatRepo.save(seat66);
-            seat_count +=1;
+            try{
+                Seats seats66 = new Seats(rand_number, 66, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats66);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat67()){
-            Seat seat67 = new Seat(67, bookSeat.isSeat67(), 1);
-            seatRepo.save(seat67);
-            seat_count +=1;
+            try{
+                Seats seats67 = new Seats(rand_number, 67, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats67);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat68()){
-            Seat seat68 = new Seat(68, bookSeat.isSeat68(), 1);
-            seatRepo.save(seat68);
-            seat_count +=1;
+            try{
+                Seats seats68 = new Seats(rand_number, 68, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats68);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat69()){
-            Seat seat69 = new Seat(69, bookSeat.isSeat69(), 1);
-            seatRepo.save(seat69);
-            seat_count +=1;
+            try{
+                Seats seats69 = new Seats(rand_number, 69, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats69);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat70()){
-            Seat seat70 = new Seat(70, bookSeat.isSeat70(), 1);
-            seatRepo.save(seat70);
-            seat_count +=1;
+            try{
+                Seats seats70 = new Seats(rand_number, 70, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats70);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat71()){
-            Seat seat71 = new Seat(71, bookSeat.isSeat71(), 1);
-            seatRepo.save(seat71);
-            seat_count +=1;
+            try{
+                Seats seats71 = new Seats(rand_number, 71, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats71);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
         if(bookSeat.isSeat72()){
-            Seat seat72 = new Seat(72, bookSeat.isSeat72(), 1);
-            seatRepo.save(seat72);
-            seat_count +=1;
+            try{
+                Seats seats72 = new Seats(rand_number, 72, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats72);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat73()){
-            Seat seat73 = new Seat(73, bookSeat.isSeat73(), 1);
-            seatRepo.save(seat73);
-            seat_count +=1;
+            try{
+                Seats seats73 = new Seats(rand_number, 73, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats73);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat74()){
-            Seat seat74 = new Seat(74, bookSeat.isSeat74(), 1);
-            seatRepo.save(seat74);
-            seat_count +=1;
+            try{
+                Seats seats74 = new Seats(rand_number, 74, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats74);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat75()){
-            Seat seat75 = new Seat(75, bookSeat.isSeat75(), 1);
-            seatRepo.save(seat75);
-            seat_count +=1;
+            try{
+                Seats seats75 = new Seats(rand_number, 75, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats75);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat76()){
-            Seat seat76 = new Seat(76, bookSeat.isSeat76(), 1);
-            seatRepo.save(seat76);
-            seat_count +=1;
+            try{
+                Seats seats76 = new Seats(rand_number, 76, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats76);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat77()){
-            Seat seat77 = new Seat(77, bookSeat.isSeat77(), 1);
-            seatRepo.save(seat77);
-            seat_count +=1;
+            try{
+                Seats seats77 = new Seats(rand_number, 77, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats77);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat78()){
-            Seat seat78 = new Seat(78, bookSeat.isSeat78(), 1);
-            seatRepo.save(seat78);
-            seat_count +=1;
+            try{
+                Seats seats78 = new Seats(rand_number, 78, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats78);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat79()){
-            Seat seat79 = new Seat(79, bookSeat.isSeat79(), 1);
-            seatRepo.save(seat79);
-            seat_count +=1;
+            try{
+                Seats seats79 = new Seats(rand_number, 79, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats79);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat80()){
-            Seat seat80 = new Seat(80, bookSeat.isSeat80(), 1);
-            seatRepo.save(seat80);
-            seat_count +=1;
+            try{
+                Seats seats80 = new Seats(rand_number, 80, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats80);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat81()){
-            Seat seat81 = new Seat(81, bookSeat.isSeat81(), 1);
-            seatRepo.save(seat81);
-            seat_count +=1;
+            try{
+                Seats seats81 = new Seats(rand_number, 81, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats81);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat82()){
-            Seat seat82 = new Seat(82, bookSeat.isSeat82(), 1);
-            seatRepo.save(seat82);
-            seat_count +=1;
+            try{
+                Seats seats82 = new Seats(rand_number, 82, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats82);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat83()){
-            Seat seat83 = new Seat(83, bookSeat.isSeat83(), 1);
-            seatRepo.save(seat83);
-            seat_count +=1;
+            try{
+                Seats seats83 = new Seats(rand_number, 83, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats83);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat84()){
-            Seat seat84 = new Seat(84, bookSeat.isSeat84(), 1);
-            seatRepo.save(seat84);
-            seat_count +=1;
+            try{
+                Seats seats84 = new Seats(rand_number, 84, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats84);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat85()){
-            Seat seat85 = new Seat(85, bookSeat.isSeat85(), 1);
-            seatRepo.save(seat85);
-            seat_count +=1;
+            try{
+                Seats seats85 = new Seats(rand_number, 85, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats85);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat86()){
-            Seat seat86 = new Seat(86, bookSeat.isSeat86(), 1);
-            seatRepo.save(seat86);
-            seat_count +=1;
+            try{
+                Seats seats86 = new Seats(rand_number, 86, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats86);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat87()){
-            Seat seat87 = new Seat(87, bookSeat.isSeat87(), 1);
-            seatRepo.save(seat87);
-            seat_count +=1;
+            try{
+                Seats seats87 = new Seats(rand_number, 87, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats87);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
 
         if(bookSeat.isSeat88()){
-            Seat seat88 = new Seat(88, bookSeat.isSeat88(), 1);
-            seatRepo.save(seat88);
-            seat_count +=1;
+            try{
+                Seats seats88 = new Seats(rand_number, 88, true, userRepo.findByUsername(username), moviesRepo.getMovieByName(filmName));
+                seatsRepo.save(seats88);
+                seat_count += 1;
+            }catch (Exception e){
+                return "/home";
+            }
         }
+
+
+
 
 
 
         model.addAttribute("userSeat",new BookSeat());
-        return "redirect:payment/"+seat_count;
+        return "redirect:http://127.0.0.1:8080/payment/"+seat_count;
     }
 
     @GetMapping("/payment/{value}") // pass values through the url
@@ -692,3 +1066,4 @@ public class seatController {
     }
 
 }
+//EOF

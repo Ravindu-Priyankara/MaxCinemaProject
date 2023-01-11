@@ -14,7 +14,8 @@ public class CookiesController {
 
             //System.out.println(username);
 
-            return "redirect:http://127.0.0.1:8080/seats/"+name;
+            String url = name+"/"+username;
+            return "redirect:http://127.0.0.1:8080/seats/"+url;
         }
         return "redirect:http://127.0.0.1:8080/login";
 

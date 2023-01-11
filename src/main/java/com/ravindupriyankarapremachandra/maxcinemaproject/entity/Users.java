@@ -18,11 +18,14 @@ public class Users {
 
     private String email;
 
-    public Users(int id, String username, String password, String phone_number, String email) {
+    private String whois;
+
+    public Users(int id, String username, String password, String phone_number, String email, String whois) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.phone_number = phone_number;
         this.email = email;
+        this.whois = whois;
     }
 }
