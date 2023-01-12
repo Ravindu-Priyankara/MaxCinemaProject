@@ -43,3 +43,22 @@ CREATE TABLE IF NOT EXISTS Cookies(
     id int primary key not null ,
     name varchar(255) not null
 );
+
+Create Table IF NOT EXISTS feedback(
+    id int primary key unique ,
+    name varchar(255) not null,
+    email varchar(255) not null ,
+    message varchar(255) not null ,
+    user_id int,
+    CONSTRAINT fk_feedback foreign key (user_id) references Users(id)
+);
+
+CREATE TABLE IF NOT EXISTS contact(
+    id int primary key unique ,
+    name varchar(255) not null ,
+    email varchar(255) not null ,
+    phone_number varchar(255) not null ,
+    message varchar(255) not null ,
+    user_id int ,
+    CONSTRAINT fk_contact foreign key (user_id) references Users(id)
+);

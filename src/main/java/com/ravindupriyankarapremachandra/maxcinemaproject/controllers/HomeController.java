@@ -36,4 +36,6 @@ public class HomeController {
     public String cinema_list(){
         return "search";
     }
+
+
 }

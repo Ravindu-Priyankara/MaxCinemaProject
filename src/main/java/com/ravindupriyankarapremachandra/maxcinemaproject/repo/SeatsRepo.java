@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SeatsRepo extends JpaRepository<Seats,Integer> {
 
-    @Query(value = "select name from seats s where s.movie_id = ?1",nativeQuery = true)
-    String getSeatsByMovie_id(int movie_id);
+    @Query(value = "select status from seats s where s.movie_id = ?1",nativeQuery = true)
+    boolean getSeatsByMovie_id(int movie_id);
 
     @Query(value = "select count(seat_no) from seats",nativeQuery = true)
     long count();
