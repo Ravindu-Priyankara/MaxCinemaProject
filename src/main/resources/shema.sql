@@ -17,10 +17,13 @@ CREATE TABLE IF NOT EXISTS seat(
 
 
 CREATE TABLE if not exists seats(
-    seat_no int primary key ,
+    seat_id int primary key not null,
+    seat_no int not null ,
     status boolean not null,
     user_id int not null,
-    CONSTRAINT fk_seat foreign key (user_id) references Users(id)
+    movie_id int not null ,
+    CONSTRAINT fk_seat foreign key (user_id) references Users(id),
+    CONSTRAINT fk_movie foreign key (movie_id) references movies(id)
 );
 
 CREATE TABLE IF NOT EXISTS Mail(
