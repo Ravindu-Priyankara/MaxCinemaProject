@@ -13,4 +13,5 @@ public interface SeatsRepo extends JpaRepository<Seats,Integer> {
 
     @Query(value = "select count(seat_no) from seats",nativeQuery = true)
     long count();
+
 }

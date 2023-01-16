@@ -161,30 +161,15 @@ public class seatController {
     public String getSeat(@ModelAttribute BookSeat bookSeat, Model model,@PathVariable("filmName")String filmName){
 
         String username = cookiesRepo.getCookiesById(1);
-        System.out.println("user name is:"+username);
-        System.out.println("user id is:-"+userRepo.findByUsername(username));
-        System.out.println("get movie id:"+moviesRepo.getMovieByName(filmName));
+        //System.out.println("user name is:"+username);
+        //System.out.println("user id is:-"+userRepo.findByUsername(username));
+        //System.out.println("get movie id:"+moviesRepo.getMovieByName(filmName));
 
 
         Random rand = new Random(); //generate random number
         int upperBound = 999999999;
         int rand_number = rand.nextInt(upperBound);
 
-        /*if(bookSeat.isSeat01()){
-            if(seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName))){
-                System.out.println("booked");
-            }else{
-                System.out.println("not booked");
-            }
-        }
-
-        if(bookSeat.isSeat02()){
-            if(seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName)) || !seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName))){
-                System.out.println("booked");
-            }else{
-                System.out.println("not booked");
-            }
-        }*/
 
 
 
@@ -195,6 +180,7 @@ public class seatController {
                 seatsRepo.save(seats01);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if (bookSeat.isSeat02()) {
@@ -204,6 +190,7 @@ public class seatController {
                 seatsRepo.save(seats02);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
 
@@ -213,6 +200,7 @@ public class seatController {
                 seatsRepo.save(seats03);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat04()){
@@ -221,6 +209,7 @@ public class seatController {
                 seatsRepo.save(seats04);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat05()){
@@ -229,6 +218,7 @@ public class seatController {
                 seatsRepo.save(seats05);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat06()){
@@ -237,6 +227,7 @@ public class seatController {
                 seatsRepo.save(seats06);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat07()){
@@ -245,6 +236,7 @@ public class seatController {
                 seatsRepo.save(seats07);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat08()){
@@ -253,6 +245,7 @@ public class seatController {
                 seatsRepo.save(seats08);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat09()){
@@ -261,6 +254,7 @@ public class seatController {
                 seatsRepo.save(seats09);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat10()){
@@ -269,6 +263,7 @@ public class seatController {
                 seatsRepo.save(seats10);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat11()){
@@ -277,6 +272,7 @@ public class seatController {
                 seatsRepo.save(seats11);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
         if(bookSeat.isSeat12()){
             if(seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName)) || !seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName))){
@@ -284,6 +280,7 @@ public class seatController {
                 seatsRepo.save(seats12);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat13()){
@@ -292,6 +289,7 @@ public class seatController {
                 seatsRepo.save(seats13);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat14()){
@@ -300,6 +298,7 @@ public class seatController {
                 seatsRepo.save(seats14);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat15()){
@@ -308,6 +307,7 @@ public class seatController {
                 seatsRepo.save(seats15);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat16()){
@@ -316,6 +316,7 @@ public class seatController {
                 seatsRepo.save(seats16);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat17()){
@@ -324,6 +325,7 @@ public class seatController {
                 seatsRepo.save(seats17);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat18()){
@@ -332,6 +334,7 @@ public class seatController {
                 seatsRepo.save(seats18);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat19()){
@@ -340,6 +343,7 @@ public class seatController {
                 seatsRepo.save(seats19);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat20()){
@@ -348,6 +352,7 @@ public class seatController {
                 seatsRepo.save(seats20);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat21()){
@@ -356,6 +361,7 @@ public class seatController {
                 seatsRepo.save(seats21);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
         if(bookSeat.isSeat22()){
             if(seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName)) || !seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName))){
@@ -363,6 +369,7 @@ public class seatController {
                 seatsRepo.save(seats22);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat23()){
@@ -371,6 +378,7 @@ public class seatController {
                 seatsRepo.save(seats23);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat24()){
@@ -379,6 +387,7 @@ public class seatController {
                 seatsRepo.save(seats24);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat25()){
@@ -387,6 +396,7 @@ public class seatController {
                 seatsRepo.save(seats25);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat26()){
@@ -395,6 +405,7 @@ public class seatController {
                 seatsRepo.save(seats26);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat27()){
@@ -403,6 +414,7 @@ public class seatController {
                 seatsRepo.save(seats27);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat28()){
@@ -411,6 +423,7 @@ public class seatController {
                 seatsRepo.save(seats28);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat29()) {
@@ -420,6 +433,7 @@ public class seatController {
                 seatsRepo.save(seats29);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat30()){
@@ -428,6 +442,7 @@ public class seatController {
                 seatsRepo.save(seats30);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat31()){
@@ -436,6 +451,7 @@ public class seatController {
                 seatsRepo.save(seats31);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
         if(bookSeat.isSeat32()){
             if(seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName)) || !seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName))){
@@ -443,6 +459,7 @@ public class seatController {
                 seatsRepo.save(seats32);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat33()){
@@ -451,6 +468,7 @@ public class seatController {
                 seatsRepo.save(seats33);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat34()){
@@ -459,6 +477,7 @@ public class seatController {
                 seatsRepo.save(seats34);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat35()){
@@ -467,6 +486,7 @@ public class seatController {
                 seatsRepo.save(seats35);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat36()){
@@ -475,6 +495,7 @@ public class seatController {
                 seatsRepo.save(seats36);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat37()){
@@ -483,6 +504,7 @@ public class seatController {
                 seatsRepo.save(seats37);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat38()){
@@ -491,6 +513,7 @@ public class seatController {
                 seatsRepo.save(seats38);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat39()){
@@ -499,6 +522,7 @@ public class seatController {
                 seatsRepo.save(seats39);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat40()){
@@ -507,6 +531,7 @@ public class seatController {
                 seatsRepo.save(seats40);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat41()){
@@ -515,6 +540,7 @@ public class seatController {
                 seatsRepo.save(seats41);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
         if(bookSeat.isSeat42()){
             if(seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName)) || !seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName))){
@@ -522,6 +548,7 @@ public class seatController {
                 seatsRepo.save(seats42);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat43()){
@@ -530,6 +557,7 @@ public class seatController {
                 seatsRepo.save(seats43);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat44()){
@@ -538,6 +566,7 @@ public class seatController {
                 seatsRepo.save(seats44);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat45()){
@@ -546,6 +575,7 @@ public class seatController {
                 seatsRepo.save(seats45);
                 seat_count +=1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat46()){
@@ -554,6 +584,7 @@ public class seatController {
                 seatsRepo.save(seats46);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat47()){
@@ -562,6 +593,7 @@ public class seatController {
                 seatsRepo.save(seats47);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat48()){
@@ -570,6 +602,7 @@ public class seatController {
                 seatsRepo.save(seats48);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat49()){
@@ -578,6 +611,7 @@ public class seatController {
                 seatsRepo.save(seats49);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat50()){
@@ -586,6 +620,7 @@ public class seatController {
                 seatsRepo.save(seats50);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat51()){
@@ -594,6 +629,7 @@ public class seatController {
                 seatsRepo.save(seats51);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat52()){
@@ -602,6 +638,7 @@ public class seatController {
                 seatsRepo.save(seats52);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat53()){
@@ -610,6 +647,7 @@ public class seatController {
                 seatsRepo.save(seats53);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat54()){
@@ -618,6 +656,7 @@ public class seatController {
                 seatsRepo.save(seats54);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat55()){
@@ -626,6 +665,7 @@ public class seatController {
                 seatsRepo.save(seats55);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat56()){
@@ -634,6 +674,7 @@ public class seatController {
                 seatsRepo.save(seats56);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat57()){
@@ -642,6 +683,7 @@ public class seatController {
                 seatsRepo.save(seats57);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat58()){
@@ -650,6 +692,7 @@ public class seatController {
                 seatsRepo.save(seats58);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat59()){
@@ -658,6 +701,7 @@ public class seatController {
                 seatsRepo.save(seats59);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat60()){
@@ -666,6 +710,7 @@ public class seatController {
                 seatsRepo.save(seats60);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat61()){
@@ -674,6 +719,7 @@ public class seatController {
                 seatsRepo.save(seats61);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
         if(bookSeat.isSeat62()){
             if(seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName)) || !seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName))){
@@ -681,6 +727,7 @@ public class seatController {
                 seatsRepo.save(seats62);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat63()){
@@ -689,6 +736,7 @@ public class seatController {
                 seatsRepo.save(seats63);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat64()){
@@ -697,6 +745,7 @@ public class seatController {
                 seatsRepo.save(seats64);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat65()){
@@ -705,6 +754,7 @@ public class seatController {
                 seatsRepo.save(seats65);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat66()){
@@ -713,6 +763,7 @@ public class seatController {
                 seatsRepo.save(seats66);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat67()){
@@ -721,6 +772,7 @@ public class seatController {
                 seatsRepo.save(seats67);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat68()){
@@ -729,6 +781,7 @@ public class seatController {
                 seatsRepo.save(seats68);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat69()){
@@ -737,6 +790,7 @@ public class seatController {
                 seatsRepo.save(seats69);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat70()){
@@ -745,6 +799,7 @@ public class seatController {
                 seatsRepo.save(seats70);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat71()){
@@ -753,6 +808,7 @@ public class seatController {
                 seatsRepo.save(seats71);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
         if(bookSeat.isSeat72()){
             if(seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName)) || !seatsRepo.getSeatsByMovie_id(moviesRepo.getMovieByName(filmName))){
@@ -760,6 +816,7 @@ public class seatController {
                 seatsRepo.save(seats72);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat73()){
@@ -768,6 +825,7 @@ public class seatController {
                 seatsRepo.save(seats73);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat74()){
@@ -776,6 +834,7 @@ public class seatController {
                 seatsRepo.save(seats74);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat75()){
@@ -784,6 +843,7 @@ public class seatController {
                 seatsRepo.save(seats75);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat76()){
@@ -792,6 +852,7 @@ public class seatController {
                 seatsRepo.save(seats76);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat77()){
@@ -800,6 +861,7 @@ public class seatController {
                 seatsRepo.save(seats77);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat78()){
@@ -808,6 +870,7 @@ public class seatController {
                 seatsRepo.save(seats78);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat79()){
@@ -816,6 +879,7 @@ public class seatController {
                 seatsRepo.save(seats79);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat80()){
@@ -824,6 +888,7 @@ public class seatController {
                 seatsRepo.save(seats80);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat81()){
@@ -832,6 +897,7 @@ public class seatController {
                 seatsRepo.save(seats81);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat82()){
@@ -840,6 +906,7 @@ public class seatController {
                 seatsRepo.save(seats82);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat83()){
@@ -848,6 +915,7 @@ public class seatController {
                 seatsRepo.save(seats83);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat84()){
@@ -856,6 +924,7 @@ public class seatController {
                 seatsRepo.save(seats84);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat85()){
@@ -864,6 +933,7 @@ public class seatController {
                 seatsRepo.save(seats85);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat86()){
@@ -872,6 +942,7 @@ public class seatController {
                 seatsRepo.save(seats86);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat87()){
@@ -880,6 +951,7 @@ public class seatController {
                 seatsRepo.save(seats87);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
         if(bookSeat.isSeat88()){
@@ -888,6 +960,7 @@ public class seatController {
                 seatsRepo.save(seats88);
                 seat_count += 1;
             }
+            else {return "booked";}
         }
 
 

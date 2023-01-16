@@ -43,6 +43,6 @@ public class ContactController {
         contactRepo.save(contact);
 
 
-        return "/home";
+        return "/login";
     }
 }

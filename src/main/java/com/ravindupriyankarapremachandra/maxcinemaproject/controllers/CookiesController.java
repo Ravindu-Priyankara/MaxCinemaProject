@@ -12,7 +12,6 @@ public class CookiesController {
     public String check_cookies(@CookieValue(value = "USERNAME")String username, @PathVariable("film_name")String name){
         if (username != null){
 
-            //System.out.println(username);
 
             String url = name+"/"+username;
             return "redirect:http://127.0.0.1:8080/seats/"+url;

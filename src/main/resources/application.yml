@@ -1,33 +1,7 @@
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
-
 spring:
   profiles:
     active: dev
 
-
-
-#  endpoint:
-#    health:
-#      show-details: always
-
-
-#spring:
-#  boot:
-#    admin:
-#      client:
-
-#    application:
-#      name: MaxCinemaProject
-
-  #logging:
-  #  file:
-  #    name: MaxCinemaProject.log
-  #    max-history: 20
-  #    max-size: 20MB
   application:
     name: Max Cinema Project by Ravindu Priyankara
   boot:
@@ -38,7 +12,6 @@ spring:
         auto-registration: true
         instance:
           name: ${spring.application.name:JSS}
-
 logging:
   level:
     root: INFO

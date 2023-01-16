@@ -1,6 +1,5 @@
 package com.ravindupriyankarapremachandra.maxcinemaproject.controllers;
 
-import com.ravindupriyankarapremachandra.maxcinemaproject.dto.UserDTO;
 import com.ravindupriyankarapremachandra.maxcinemaproject.entity.Mail;
 import com.ravindupriyankarapremachandra.maxcinemaproject.entity.Users;
 import com.ravindupriyankarapremachandra.maxcinemaproject.models.CheckUsers;
@@ -10,17 +9,13 @@ import com.ravindupriyankarapremachandra.maxcinemaproject.repo.UserRepo;
 import com.ravindupriyankarapremachandra.maxcinemaproject.service.MailService;
 import com.ravindupriyankarapremachandra.maxcinemaproject.service.UserService;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -78,7 +73,8 @@ public class UserController {
                 Users users = new Users(rand_number, getUsers.getUsername(), getUsers.getPassword(), getUsers.getPhNumber(), getUsers.getEmail(),"user");
                 userRepo.save(users);
 
-                mailService.mailSend(getUsers.getEmail(), "Max Cinema Registered Message","you are registered successfully to Max Cinema\n Registration time is:"+dtf.format(now));
+                mailService.mailSend(getUsers.getEmail(), "Max Cinema Registered Message",
+                        "you are registered successfully to Max Cinema\n Registration time is:"+dtf.format(now));
 
                 Mail mail = new Mail(rand_number,"registration","registration successful",userRepo.findByUsername(getUsers.getUsername()));
                 mailRepo.save(mail);
@@ -104,7 +100,8 @@ public class UserController {
 
             /*** send mail as a alert( user login alert) ***/
 
-            mailService.mailSend((userRepo.findByEmailMatches(checkUsers.getUsername())),"Max Cinema Login Message","you are login successfully to Max Cinema\n login time is:"+dtf.format(now));
+            mailService.mailSend((userRepo.findByEmailMatches(checkUsers.getUsername())),"Max Cinema Login Message",
+                    "you are login successfully to Max Cinema\n login time is:"+dtf.format(now));
 
             Mail mail = new Mail(rand_number,"registration","registration successful",userRepo.findByUsername(checkUsers.getUsername()));
             mailRepo.save(mail);

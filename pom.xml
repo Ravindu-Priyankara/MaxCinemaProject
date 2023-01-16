@@ -15,7 +15,7 @@
     <description>MaxCinemaProject</description>
     <properties>
         <java.version>17</java.version>
-    </properties>
+    </properties>ss
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
